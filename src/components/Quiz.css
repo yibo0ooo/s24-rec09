@@ -8,9 +8,11 @@ Hint: You can use the className attribute for highlighting*/
   /* Additional styling for better user experience */
   .selected:hover {
     cursor: pointer;
+    background-color: #00b56c; /* Light blue color */
+    border-color: #0c3f56
   }
   
-  
+
   /* Container styles */
   div {
     background-color: #f7f7f7;
