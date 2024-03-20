@@ -74,4 +74,7 @@ Hint: You can use the className attribute for highlighting*/
     font-weight: bold;
     margin: 10px 0;
   }
-  
+
+.clicked {
+    background-color: #00b56c;
+}

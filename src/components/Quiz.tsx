@@ -14,6 +14,7 @@ const Quiz: React.FC = () => {
   const [quizCore] = useState(new QuizCore());
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   useEffect(() => {
     // If there are no more questions, set the quiz as completed
@@ -32,12 +33,15 @@ const Quiz: React.FC = () => {
     // Task3: Implement the logic for button click, such as moving to the next question.
     if (selectedAnswer) {
       quizCore.answerQuestion(selectedAnswer);
-      setSelectedAnswer(null); // Reset the selected answer preparing for the next question
+      setIsButtonClicked(true);
 
       if (quizCore.hasNextQuestion()) {
         quizCore.nextQuestion();
+        setSelectedAnswer(null); // Reset the selected answer preparing for the next question
+        setIsButtonClicked(false);
       } else {
         setIsCompleted(true);
+        setIsButtonClicked(false);
       }
     }
 
@@ -82,7 +86,10 @@ const Quiz: React.FC = () => {
       <h3>Selected Answer:</h3>
       <p>{selectedAnswer ?? 'No answer selected'}</p>
 
-      <button onClick={handleButtonClick}>
+      <button 
+        onClick={handleButtonClick}
+        className={isButtonClicked ? 'clicked' : ''}
+      >
         {quizCore.hasNextQuestion() ? 'Next Question' : 'Submit'}
       </button>
     </div>
